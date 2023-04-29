@@ -48,4 +48,25 @@ public String deleteBypara(@RequestParam ("id") int id )
 	cServ.deleteDetails(id);
 	return id+" is deleted";
 }
+//sort
+@GetMapping("/sortAsc/{brand}")
+public List<Studentdetails> sortStudent(@PathVariable("brand")String name)
+{
+	  return cServ.sortAsc(name);
+}
+
+//pagination
+@GetMapping("/pagi/{pnu}/{psize}")
+public List<Studentdetails> paginationData(@PathVariable("pnu") int pnu, @PathVariable("psize") int psize)
+{
+	  return cServ.paginationAndSorting(pnu, psize);
+}
+
+//pagination and sorting
+@GetMapping("/paginationSorting/{pnu}/{psize}/{pname}")
+public List<Studentdetails> paginationSorting(@PathVariable("pnu") int pnu, @PathVariable("psize") int psize, @PathVariable("pname") String pname)
+{
+	  return cServ.paginationAndSorting(pnu, psize, pname);
+}
+
 }

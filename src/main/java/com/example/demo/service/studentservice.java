@@ -3,6 +3,9 @@ package com.example.demo.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Studentdetails;
@@ -31,7 +34,26 @@ public class studentservice {
 	{
 		crepo.deleteById(id);
 	}
+	
+	//sort by ascending
+	public List<Studentdetails> sortAsc(String name)
+	{
+		return crepo.findAll(Sort.by(name).ascending());
+	}
 
+	//pagination
+	public List<Studentdetails> paginationAndSorting(int pageNu, int pageSize)
+	{
+		Page<Studentdetails> p=crepo.findAll(PageRequest.of(pageNu, pageSize));
+		return p.getContent();
+	}
+
+	//pagination and sorting
+	public List<Studentdetails> paginationAndSorting(int pageNu, int pageSize, String pname)
+	{
+		Page<Studentdetails> p=crepo.findAll(PageRequest.of(pageNu, pageSize, Sort.by(pname).descending()));
+		return p.getContent();
+	}
 
 
 
