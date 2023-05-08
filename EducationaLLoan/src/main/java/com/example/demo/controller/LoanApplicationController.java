@@ -21,5 +21,13 @@ public class LoanApplicationController {
 		List<LoanApplicationModel> l=laSer.get();
 		return l;
 	}
+		@DeleteMapping("deleteprofile/{id}")
+	public void deleteProfile(@PathVariable("id") int id)
+	{
+		userSer.deleteProfile(id);
+	}
+delete in usercontro
+
+}
 
 }
